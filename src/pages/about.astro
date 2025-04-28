@@ -1,1 +1,57 @@
-（ここに元リポジトリのabout.astroの内容をコピー）
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FadeInSection from '../components/FadeInSection.astro';
+
+// 会社情報
+const companyInfo = [
+  { label: "社名", value: "株式会社Kumono" },
+  { label: "創業", value: "2024年6月" },
+  { label: "設立", value: "2025年2月" },
+  { label: "資本金", value: "9,000,000円" },
+  { label: "代表者", value: "代表取締役 古座 匠" },
+  { label: "所在地", value: "〒150-0001 東京都渋谷区神宮前6-23-4-2F" },
+  { label: "法人番号", value: "3011001167808" }
+];
+---
+
+<MainLayout 
+  title="企業情報 | Kumono" 
+  description="株式会社Kumonoの企業情報ページです。代表者プロフィールや会社情報をご覧いただけます。"
+>
+  <PageHeader title="COMPANY" subtitle="企業情報" />
+  
+  <div class="container mx-auto px-6 py-12 max-w-4xl">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">代表者プロフィール</h2>
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold">
+          古座 匠<span class="text-sm font-normal ml-2">Takumi Koza</span>
+        </h3>
+        <div class="flex flex-col gap-8">
+          <div class="w-full">
+            <p class="text-gray-700">
+              東京大学経済学部卒業。在学中よりスタートアップのSOELU株式会社に入社し5年半、皿洗い・Webマーケター・PdM・事業責任者と役割の変遷を重ねつつ事業拡大のための戦略立案から実行までを一貫して推進。
+              2024年に独立。スタートアップの急成長フェーズにおける、KPI策定・データ分析による注力箇所の洗い出し・顧客理解からプロダクト開発、・オペレーショナルな業務の改善までを包括的に支援。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">会社情報</h2>
+      <table class="w-full border-collapse">
+        <tbody>
+          {companyInfo.map(item => (
+            <tr class="border-b">
+              <th class="text-left py-2 pr-4">{item.label}</th>
+              <td class="py-2">{item.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</MainLayout>
+
