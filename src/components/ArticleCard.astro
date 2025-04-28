@@ -1,0 +1,55 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  eyecatch?: string;
+  category?: string;
+  publishedAt: Date;
+}
+
+const { id, title, description, eyecatch, category, publishedAt } = Astro.props;
+
+// 日付フォーマット
+const formattedDate = new Intl.DateTimeFormat('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(publishedAt);
+---
+
+<a href={`/blog/${id}`} class="block group overflow-hidden bg-white rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:translate-y-[-3px] transition-all duration-300">
+  <div class="aspect-video overflow-hidden bg-gray-100">
+    {eyecatch ? (
+      <img 
+        src={eyecatch} 
+        alt={title} 
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center bg-primary/5">
+        <span class="text-primary/30 text-lg font-medium">No Image</span>
+      </div>
+    )}
+  </div>
+  
+  <div class="p-5 space-y-3">
+    {category && (
+      <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
+        {category}
+      </span>
+    )}
+    
+    <h3 class="text-lg font-bold line-clamp-2 group-hover:text-primary transition-colors">
+      {title}
+    </h3>
+    
+    <p class="text-gray-700 text-sm line-clamp-2">
+      {description}
+    </p>
+    
+    <p class="text-gray-500 text-xs pt-2">
+      {formattedDate}
+    </p>
+  </div>
+</a>

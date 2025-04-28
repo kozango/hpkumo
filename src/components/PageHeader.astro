@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  className?: string;
+}
+
+const { title, subtitle, className = "" } = Astro.props;
+const isCompanyPage = title === "COMPANY";
+const isSolutionsPage = title === "SOLUTIONS";
+---
+
+<div class="relative overflow-hidden">
+  {(isCompanyPage || isSolutionsPage) && (
+    <div class="absolute inset-0 z-0">
+      <img
+        src={
+          isSolutionsPage
+            ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-207oUOJeHPz0AWF7NKs7MiWMjFczwG.png"
+            : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PXL_20240728_194716576.jpg-lWsEEoc2oOpGv2jQUBVtoaq53grh2k.jpeg"
+        }
+        alt={isSolutionsPage ? "Bicycle with Mount Fuji view" : "Mountain sunrise"}
+        class="w-full h-[300px] object-cover"
+      />
+      <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+  )}
+  <div class={`relative z-10 py-20 ${isCompanyPage || isSolutionsPage ? "" : "bg-white"} ${className}`}>
+    <div class="container mx-auto px-6 text-center">
+      <h1
+        class={`text-4xl font-bold mb-2 ${isCompanyPage || isSolutionsPage ? "text-white" : "text-gray-800"}`}
+      >
+        {title}
+      </h1>
+      <p class={`text-xl ${isCompanyPage || isSolutionsPage ? "text-white" : "text-gray-600"}`}>{subtitle}</p>
+    </div>
+  </div>
+</div>

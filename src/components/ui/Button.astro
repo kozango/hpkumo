@@ -1,0 +1,46 @@
+---
+export interface Props {
+  variant?: 'default' | 'outline' | 'destructive' | 'ghost' | 'link';
+  size?: 'default' | 'sm' | 'lg' | 'icon';
+  class?: string;
+  href?: string;
+}
+
+const { 
+  variant = 'default',
+  size = 'default',
+  class: className = '',
+  href 
+} = Astro.props;
+
+// クラス名マッピング
+const variantClasses = {
+  default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+  outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+  destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+  ghost: 'hover:bg-accent hover:text-accent-foreground',
+  link: 'underline-offset-4 hover:underline text-primary'
+};
+
+const sizeClasses = {
+  default: 'h-10 px-4 py-2',
+  sm: 'h-9 rounded-md px-3',
+  lg: 'h-11 rounded-md px-8',
+  icon: 'h-10 w-10'
+};
+
+const baseClass = 'inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:translate-y-[-2px]';
+
+const classes = `${baseClass} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+
+---
+
+{href ? (
+  <a href={href} class={classes}>
+    <slot />
+  </a>
+) : (
+  <button type="button" class={classes}>
+    <slot />
+  </button>
+)}

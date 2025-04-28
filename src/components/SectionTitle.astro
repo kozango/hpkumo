@@ -1,0 +1,19 @@
+---
+interface Props {
+  subtext?: string;
+  className?: string;
+}
+
+const { subtext, className = "" } = Astro.props;
+---
+
+<div class={`text-center mb-12 ${className}`}>
+  {subtext && (
+    <span class="text-primary font-semibold mb-2 block">
+      {subtext}
+    </span>
+  )}
+  <h2 class="text-3xl font-bold">
+    <slot />
+  </h2>
+</div>

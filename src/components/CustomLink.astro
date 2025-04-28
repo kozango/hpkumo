@@ -1,0 +1,14 @@
+---
+import CustomLinkReact from './react/CustomLink';
+
+interface Props {
+  href: string;
+  className?: string;
+}
+
+const { href, className } = Astro.props;
+---
+
+<CustomLinkReact client:load href={href} className={className}>
+  <slot />
+</CustomLinkReact>

@@ -1,1 +1,135 @@
-（ここに元リポジトリのcases.astroの内容をコピー）
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import AnimatedSection from '../components/AnimatedSection.astro';
+import Icon from '../components/ui/Icon.astro';
+import Button from '../components/ui/Button.astro';
+
+// エクスポートして他のページから利用できるようにする
+export const cases = [
+  {
+    title: "SOELU株式会社",
+    category: "プロダクトマネジメント・データ活用",
+    description:
+      "社員として在籍後、退職後も業務委託として引き続き関与。新規事業の責任者のほか、ダッシュボードの構築・主要なKPI向上のための分析から企画・施策実行など、社内に深く入り込んで複数の事業に対して幅広く取り組みをしています。",
+    logo: "/images/logos/soelu_logo.svg",
+  },
+  {
+    title: "株式会社ヤマップ",
+    category: "データ活用・UX改善",
+    description:
+      "ユーザーセグメント別の行動分析と定性調査を組み合わせ、アプリ利用の継続性と顧客体験の向上のプロジェクトを主に支援。施策単位での効果測定から、注力箇所の策定など、多様な分析を行っています。",
+    logo: "/images/logos/yamap_logo.svg",
+  },
+  {
+    title: "株式会社D",
+    category: "データ活用",
+    description:
+      "ダッシュボード作成を通じて、社内向けに事業用のデータ可視化と運用を推進。さらに主要KPI達成に向けた重要指標の特定など、包括的なデータ活用を支援しています。",
+    logo: "",
+  },
+  {
+    title: "株式会社トドケール",
+    category: "B2Bマーケティング支援",
+    description:
+      "伴走型でB2Bマーケティングの企画・実行を担当。具体的には継続的なSEO施策やウェビナーの設計・運営などを行い、マーケチーム伴走型で、施策の実行に関与しています。",
+    logo: "/images/logos/todokeru_logo.svg",
+  },
+  {
+    title: "教育SNSのデータ活用",
+    category: "データ活用",
+    description:
+      "ダッシュボードの整備および、マーケティングチーム直下でのデータ分析にも従事。施策の効果測定や最適化および、施策単位のPMも兼務しました。",
+    logo: "",
+  },
+  {
+    title: "AI新規事業のリリース伴走",
+    category: "UX調査×新規事業開発",
+    description:
+      "完全な0→1フェーズのAIプロダクト開発を代表直下で担当。初期仮説の立案からターゲット設定、コア機能や裏側の仕組みの設計まで幅広く携わり、機動力を重視した動きでリリースまで伴走。",
+    logo: "/placeholder.svg",
+  },
+  {
+    title: "ふるさと納税ECのWEBマーケ支援",
+    category: "UX調査×Webマーケ",
+    description:
+      "ふるさと納税に特化したECのデジタルマーケティングを担当。UX調査と組み合わせたターゲットの顧客像の明確化・運用型広告やLP作成、アフィリエイト、SNSなど幅広いチャネルを初期導入し運用体制の構築を支援。",
+    logo: "/placeholder.svg",
+  },
+];
+
+// SEO用のメタデータ
+const title = "実績紹介 | Kumono";
+const description = "Kumonoの実績紹介。データドリブン経営支援、事業成長の伴走支援、ブランド戦略立案など、様々な分野での実績をご紹介します。";
+---
+
+<MainLayout title={title} description={description}>
+  <div class="min-h-screen w-full overflow-x-hidden">
+    <!-- ページヘッダー -->
+    <section class="bg-gray-50 py-8 md:py-12">
+      <div class="container mx-auto px-4">
+        <div class="text-center">
+          <h1 class="text-2xl md:text-3xl font-bold mb-2">CASES</h1>
+          <p class="text-lg text-gray-600">実績紹介</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="container mx-auto px-4 sm:px-6 mt-8">
+      <p class="text-sm text-gray-600 italic">
+        ※ 2025年2月の法人化以前（個人事業主時代）の実績も掲載しております。
+      </p>
+    </div>
+
+    <!-- 実績一覧 -->
+    <AnimatedSection className="py-8 sm:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {cases.map((caseItem) => (
+          <div class="group bg-white rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.05)] overflow-hidden hover:shadow-[0_3px_12px_rgba(0,0,0,0.08)]">
+            <div class="p-6 flex flex-col h-full">
+              {/* ロゴエリア（ロゴがある場合のみ表示） */}
+              {caseItem.logo && caseItem.logo !== "/placeholder.svg" && (
+                <div class={`flex items-center justify-center h-52 mb-6 rounded-lg bg-gray-50`}>
+                  <img 
+                    src={caseItem.logo} 
+                    alt={`${caseItem.title}のロゴ`} 
+                    class={`max-h-full max-w-[95%] ${caseItem.logo.includes("soelu") ? "p-0 scale-125" : "p-4"} object-contain`}
+                    loading="lazy"
+                    decoding="async"
+                    width="300"
+                    height="150"
+                  />
+                </div>
+              )}
+              
+              {/* カテゴリー */}
+              <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm mb-3 self-start transition-all duration-300 group-hover:bg-primary/15">
+                {caseItem.category}
+              </span>
+              
+              {/* 会社名 */}
+              <h2 class="text-xl font-bold mb-3">{caseItem.title}</h2>
+              
+              {/* 説明文 */}
+              <p class="text-sm text-gray-700 leading-relaxed">{caseItem.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </AnimatedSection>
+
+    <!-- お問い合わせセクション -->
+    <AnimatedSection className="py-12 sm:py-20 bg-gray-50">
+      <div class="text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">お客様の課題に合わせた最適なソリューションを提供します</h2>
+        <p class="text-sm sm:text-base text-gray-700 mb-6 sm:mb-8">
+          上記以外にも多くの実績がございます。
+          <br class="hidden sm:block" />
+          まずはお気軽にご相談ください。
+        </p>
+        <Button href="/contact" variant="primary" size="lg">
+          お問い合わせはこちら
+        </Button>
+      </div>
+    </AnimatedSection>
+  </div>
+</MainLayout>

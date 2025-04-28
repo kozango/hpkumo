@@ -1,1 +1,320 @@
-（ここに元リポジトリのservice.astroの内容をコピー）
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Icon from '../components/ui/Icon.astro';
+import Button from '../components/ui/Button.astro';
+import AnimatedSection from '../components/AnimatedSection.astro';
+import FadeInSection from '../components/FadeInSection.astro';
+import CustomLink from '../components/CustomLink.astro';
+import VennDiagram from '../components/VennDiagram.astro';
+
+// FAQ定義
+const faqItems = [
+  {
+    question: "どんな業種・フェーズでも相談可能ですか？",
+    answer: "メインはToCスタートアップ向けですが、顧客中心のUX設計が必要な事業全般に対応可能です。",
+  },
+  {
+    question: "具体的にどんな成果が出ますか？",
+    answer: "ユーザー獲得数・LTV向上、離脱率改善、開発スピード向上など、ビジネスKPIに直結した実績を目指します。",
+  },
+  {
+    question: "短期間だけお願いすることはできますか？",
+    answer: "最短3ヶ月からのご契約です。短期での集中支援後、延長のご相談も柔軟に承ります。",
+  },
+  {
+    question: "リモート中心でも問題ないですか？",
+    answer: "問題ありません。必要に応じてオンライン／オフラインを使い分け、スムーズにコミュニケーションを図ります。",
+  },
+];
+---
+
+<MainLayout 
+  title="サービス紹介 | Kumono" 
+  description="データ活用の仕組みづくりとUX勝ちパターン設計でToCスタートアップの成長を加速。データ分析からプロトタイプ開発・検証まで一貫支援します。"
+>
+  <!-- ヒーローセクション -->
+  <section class="bg-gray-50 py-8 md:py-12">
+    <div class="container mx-auto px-4">
+      <div class="text-center">
+        <h1 class="text-2xl md:text-3xl font-bold mb-2">SERVICES</h1>
+        <p class="text-lg text-gray-600">事業内容</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- サービス詳細 -->
+  <AnimatedSection id="service-details" className="py-24 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- データ活用の仕組みづくり -->
+        <div class="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center mb-6">
+            <div class="bg-primary/10 rounded-xl w-12 h-12 flex items-center justify-center mr-4">
+              <Icon name="Database" class="h-6 w-6 text-primary" />
+            </div>
+            <h3 class="text-xl font-bold">データ活用支援</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <Icon name="CheckCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">KPI設計・ダッシュボード構築（Looker Studio,Metabase,Lightdash,Tableauなど）</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="CheckCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">「見るだけ」の分析から「意思決定〜施策実行」まで落とし込む仕組みを提供</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="CheckCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">現場社員向けへの研修（データドリブンなチーム組織構築・社内リテラシーの向上）</p>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- UX勝ちパターン設計 -->
+        <div class="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center mb-6">
+            <div class="bg-primary/10 rounded-xl w-12 h-12 flex items-center justify-center mr-4">
+              <Icon name="UserCheck" class="h-6 w-6 text-primary" />
+            </div>
+            <h3 class="text-xl font-bold">UX改善支援</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <Icon name="CheckCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">顧客インタビューやリサーチで「曖昧な顧客像」を明確に言語化</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="CheckCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">インタビュー結果を基にUX改善施策を設計、プロトタイプを迅速に開発</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="CheckCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">社内向けのプロトタイプ開発や検証を通じて、UX改善効果を即データで追跡</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </AnimatedSection>
+
+  <!-- こんなお悩みありませんか？ -->
+  <AnimatedSection id="challenges" className="py-24">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <SectionTitle subtext="Common Challenges">こんなお悩みありませんか？</SectionTitle>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- データ活用の課題 -->
+        <div class="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center mb-6">
+            <div class="bg-primary/10 rounded-xl w-12 h-12 flex items-center justify-center mr-4">
+              <Icon name="Database" class="h-6 w-6 text-primary" />
+            </div>
+            <h3 class="text-xl font-bold">データ活用の課題</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <Icon name="AlertCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">現場スタッフによる手動での数値入力や定義が曖昧なレポートを信頼できない</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="AlertCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">BizDev×分析の分断を起こさず、まとめて機動的にサポートして欲しい</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="AlertCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">BIツール導入・ダッシュボード作成後、うまく活用できていない</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="AlertCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">成果を出すための『ビジネスアナリスト』のような人材を増やしたい</p>
+            </li>
+          </ul>
+          <div class="mt-8 text-center">
+            <a href="https://diagnosis-data.kumono-inc.com/" class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-medium rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:translate-y-[-2px] transition-all duration-300 hover:bg-primary/90">
+              組織のデータ活用レベルを診断する（簡単3分）
+              <Icon name="ArrowRight" class="h-5 w-5 ml-2" />
+            </a>
+          </div>
+        </div>
+        
+        <!-- UX設計の課題 -->
+        <div class="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center mb-6">
+            <div class="bg-primary/10 rounded-xl w-12 h-12 flex items-center justify-center mr-4">
+              <Icon name="UserCheck" class="h-6 w-6 text-primary" />
+            </div>
+            <h3 class="text-xl font-bold">UX設計の課題</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <Icon name="AlertCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">チーム内で顧客像がバラバラ。共通認識が曖昧で、改善の議論が進まない</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="AlertCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">忙しすぎてチームの誰も顧客の声をまとまって聞けていない</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="AlertCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">サービスが急拡大して提供品質にばらつきが出てきた</p>
+            </li>
+            <li class="flex items-start">
+              <Icon name="AlertCircle" class="h-5 w-5 text-primary mt-1 mr-3" />
+              <p class="text-gray-700">特定のエース人材への依存度が高く、システム化してリスクを下げたい</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </AnimatedSection>
+
+  <!-- 実績（一例） -->
+  <AnimatedSection id="case-studies" className="py-24">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <SectionTitle subtext="Case Studies">実績（一例）</SectionTitle>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- 実績1 -->
+        <div class="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div class="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+            <Icon name="TrendingUp" class="h-8 w-8 text-primary" />
+          </div>
+          <h3 class="text-xl font-bold text-center mb-4">ユーザー行動変容を促す要因を特定、ダッシュボード化</h3>
+          <p class="text-gray-700 text-center">行動データ分析でCV・継続の要因を発見し、施策実行用のダッシュボード構築（6ヶ月）</p>
+        </div>
+        
+        <!-- 実績2 -->
+        <div class="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div class="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+            <Icon name="UserCheck" class="h-8 w-8 text-primary" />
+          </div>
+          <h3 class="text-xl font-bold text-center mb-4">エーススタッフ依存度を<br/>30%減</h3>
+          <p class="text-gray-700 text-center">エーススタッフの『暗黙知』をUX×データ分析で構造化。業務の再現性を高め依存度30パーセント減（4ヶ月）</p>
+        </div>
+        
+        <!-- 実績3 -->
+        <div class="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div class="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+            <Icon name="Database" class="h-8 w-8 text-primary" />
+          </div>
+          <h3 class="text-xl font-bold text-center mb-4">エクイティ調達成功に貢献</h3>
+          <p class="text-gray-700 text-center">投資家が求める定量的な成長予測を、ダッシュボード構築＆購買予測モデルで可視化。事業仮説の蓋然性を高め調達へとつながる（3ヶ月）</p>
+        </div>
+      </div>
+    </div>
+  </AnimatedSection>
+  
+  <!-- 支援の流れ -->
+  <AnimatedSection id="process" className="py-24 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <SectionTitle subtext="Our Process">支援の流れ</SectionTitle>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="flex flex-col md:flex-row gap-8">
+          <!-- ステップ1 -->
+          <div class="flex-1 relative">
+            <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 h-full">
+              <div class="absolute -top-4 -left-4 bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">1</div>
+              <h3 class="text-xl font-bold mb-3 mt-2">初回相談（無料）</h3>
+              <p class="text-gray-700">現状の課題や目標をじっくりお伝えください。対応可能か評価し、最適なアプローチをご提案します。</p>
+            </div>
+            <div class="hidden md:block absolute top-1/2 -right-4 w-8 h-8 text-primary">
+              <Icon name="ChevronRight" class="h-8 w-8" />
+            </div>
+          </div>
+          
+          <!-- ステップ2 -->
+          <div class="flex-1 relative">
+            <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 h-full">
+              <div class="absolute -top-4 -left-4 bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">2</div>
+              <h3 class="text-xl font-bold mb-3 mt-2">課題分析・診断</h3>
+              <p class="text-gray-700">現場Slack常駐での課題拾い上げや定期ミーティングを通じて、調査・分析を行います。</p>
+            </div>
+            <div class="hidden md:block absolute top-1/2 -right-4 w-8 h-8 text-primary">
+              <Icon name="ChevronRight" class="h-8 w-8" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-8 mt-8">
+          <!-- ステップ3 -->
+          <div class="flex-1 relative">
+            <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 h-full">
+              <div class="absolute -top-4 -left-4 bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">3</div>
+              <h3 class="text-xl font-bold mb-3 mt-2">施策提案</h3>
+              <p class="text-gray-700">データダッシュボード整備とUX改善プロトタイプを含む具体的な改善施策を提案します。</p>
+            </div>
+            <div class="hidden md:block absolute top-1/2 -right-4 w-8 h-8 text-primary">
+              <Icon name="ChevronRight" class="h-8 w-8" />
+            </div>
+          </div>
+          
+          <!-- ステップ4 -->
+          <div class="flex-1 relative">
+            <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 h-full">
+              <div class="absolute -top-4 -left-4 bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">4</div>
+              <h3 class="text-xl font-bold mb-3 mt-2">現場伴走</h3>
+              <p class="text-gray-700">施策実行から成果検証まで、現場に寄り添い支援します。継続的な改善サイクルを実現します。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <Button href="/contact" size="lg">無料相談を予約する</Button>
+      </div>
+    </div>
+  </AnimatedSection>
+
+
+
+  <!-- FAQ -->
+  <AnimatedSection className="py-24 overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="text-center">
+        <SectionTitle subtext="FAQ">よくあるご質問</SectionTitle>
+      </div>
+
+      <div class="max-w-2xl mx-auto space-y-4 mt-12">
+        {faqItems.map((item) => (
+          <div class="group bg-white rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:translate-y-[-3px] transition-all duration-300">
+            <div class="w-full px-8 py-6 flex justify-between items-center cursor-pointer">
+              <h3 class="font-medium text-left text-lg">{item.question}</h3>
+              <div class="relative w-6 h-6 flex items-center justify-center">
+                <Icon name="ArrowRight" class="h-6 w-6 text-primary transition-all duration-300 group-hover:scale-110" />
+              </div>
+            </div>
+            <div class="px-8 pb-6 text-gray-700 leading-relaxed">
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </AnimatedSection>
+
+  <!-- CTA -->
+  <section class="py-16 bg-primary/5">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">まずは気軽にご相談ください</h2>
+      <p class="text-gray-700 mb-8 max-w-2xl mx-auto">
+        初回の無料相談では、御社の課題をヒアリングした上で、最適なアプローチ方法をご提案します。
+        サービス内容や料金体系についても詳しくご説明いたします。
+      </p>
+      <div class="flex justify-center">
+        <Button size="lg" class="bg-primary hover:bg-primary/90" href="/contact">
+          無料相談を予約する
+        </Button>
+      </div>
+    </div>
+  </section>
+</MainLayout>

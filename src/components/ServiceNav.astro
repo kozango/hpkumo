@@ -1,0 +1,139 @@
+---
+interface Service {
+  id: string;
+  title: string;
+}
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+---
+
+<script>
+  // Client-side script for handling intersection observation and smooth scrolling
+  document.addEventListener('DOMContentLoaded', () => {
+    const services = JSON.parse(document.getElementById('service-nav-data')?.getAttribute('data-services') || '[]');
+    let activeSection = services.length > 0 ? services[0].id : '';
+    
+    // Update active section based on scroll position
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            activeSection = entry.target.id;
+            updateActiveStyles(activeSection);
+          }
+        });
+      },
+      {
+        rootMargin: "-50% 0px",
+        threshold: 0,
+      }
+    );
+    
+    // Observe all service sections
+    services.forEach((service) => {
+      const element = document.getElementById(service.id);
+      if (element) observer.observe(element);
+    });
+    
+    // Update active styles for both mobile and desktop navigation
+    function updateActiveStyles(activeId) {
+      // Update mobile nav
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        const linkId = link.getAttribute('href')?.substring(1);
+        if (linkId === activeId) {
+          link.classList.add('text-primary', 'font-medium');
+          link.classList.remove('text-gray-600');
+        } else {
+          link.classList.remove('text-primary', 'font-medium');
+          link.classList.add('text-gray-600');
+        }
+      });
+      
+      // Update desktop nav
+      document.querySelectorAll('.desktop-nav-link').forEach(link => {
+        const linkId = link.getAttribute('href')?.substring(1);
+        const dot = link.querySelector('.nav-dot');
+        const text = link.querySelector('.nav-text');
+        
+        if (linkId === activeId) {
+          dot?.classList.add('bg-primary', 'border-primary');
+          dot?.classList.remove('border-gray-300');
+          text?.classList.add('text-primary', 'font-medium');
+          text?.classList.remove('text-gray-600');
+        } else {
+          dot?.classList.remove('bg-primary', 'border-primary');
+          dot?.classList.add('border-gray-300');
+          text?.classList.remove('text-primary', 'font-medium');
+          text?.classList.add('text-gray-600');
+        }
+      });
+    }
+    
+    // Add click event listeners for smooth scrolling
+    document.querySelectorAll('.mobile-nav-link, .desktop-nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href')?.substring(1);
+        if (targetId) {
+          document.getElementById(targetId)?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      });
+    });
+    
+    // Initialize active styles
+    updateActiveStyles(activeSection);
+  });
+</script>
+
+<!-- Hidden element to pass data to client script -->
+<div id="service-nav-data" data-services={JSON.stringify(services)} class="hidden"></div>
+
+<!-- Mobile navigation -->
+<nav class="lg:hidden sticky top-0 z-40 w-full overflow-x-auto bg-white/95 backdrop-blur-sm shadow-sm">
+  <div class="flex whitespace-nowrap px-4 py-3 gap-4">
+    {services.map((service) => (
+      <a
+        href={`#${service.id}`}
+        class="mobile-nav-link text-sm transition-colors text-gray-600 hover:text-gray-900"
+        data-id={service.id}
+      >
+        {service.title}
+      </a>
+    ))}
+  </div>
+</nav>
+
+<!-- Desktop navigation -->
+<nav class="fixed left-8 xl:left-12 top-1/2 -translate-y-1/2 z-40 hidden lg:block w-44 xl:w-48">
+  <div class="bg-white/95 backdrop-blur-sm shadow-lg rounded-2xl py-6 px-4">
+    <ul class="space-y-6">
+      {services.map((service) => (
+        <li>
+          <a
+            href={`#${service.id}`}
+            class="desktop-nav-link flex items-center group space-x-3"
+            data-id={service.id}
+          >
+            <div class="relative w-2 h-2 flex-shrink-0">
+              <div
+                class="nav-dot absolute inset-0 rounded-full border-2 border-gray-300 transition-colors duration-200 group-hover:border-primary"
+              ></div>
+            </div>
+            <span
+              class="nav-text text-sm transition-colors duration-200 line-clamp-2 text-gray-600 group-hover:text-gray-900"
+            >
+              {service.title}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

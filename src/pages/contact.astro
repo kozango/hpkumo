@@ -1,1 +1,52 @@
-（ここに元リポジトリのcontact.astroの内容をコピー）
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Icon from '../components/ui/Icon.astro';
+import Button from '../components/ui/Button.astro';
+import GoogleFormEmbed from '../components/GoogleFormEmbed.astro';
+import FadeInSection from '../components/FadeInSection.astro';
+---
+
+<MainLayout 
+  title="お問い合わせ | Kumono" 
+  description="Kumonoへのご質問、ご相談、お見積りのご依頼など、お気軽にお問い合わせください。無料相談も承っております。"
+>
+  <!-- ヒーローセクション -->
+  <section class="relative py-8 sm:py-10 bg-gradient-to-br from-primary/5 via-white to-primary/10">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 transform rounded-full bg-primary/5 blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-primary/10 blur-2xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-2xl md:text-3xl font-bold mb-2">
+          <span class="text-primary">お問い合わせ</span>
+        </h1>
+        <p class="text-base text-gray-600 mb-4">
+          ご質問、ご相談、お見積りのご依頼など、<br />
+          お気軽にお問い合わせください。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせフォーム -->
+  <section class="py-8 md:py-12">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <FadeInSection>
+          <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+            <h2 class="text-xl font-bold text-center mb-4">お問い合わせフォーム</h2>
+            
+            <!-- Googleフォーム埋め込み -->
+            <GoogleFormEmbed 
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfJpAt2nAFF5U8uPxy9OwUlA-nH_4rhBPTSZEbQk9vFW7QKHw/viewform?embedded=true" 
+              title="お問い合わせフォーム"
+            />
+          </div>
+        </FadeInSection>
+      </div>
+    </div>
+  </section>
+</MainLayout>

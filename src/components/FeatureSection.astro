@@ -1,0 +1,28 @@
+---
+import Icon from './ui/Icon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  iconName: string;
+  reverse?: boolean;
+}
+
+const { title, description, iconName, reverse = false } = Astro.props;
+---
+
+<div class={`flex flex-col gap-8 items-center ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+  <div class="flex-1 flex justify-center">
+    <div class="bg-primary/10 p-6 rounded-full">
+      <Icon name={iconName} class="h-12 w-12 text-primary" />
+    </div>
+  </div>
+  <div class="flex-1 space-y-4">
+    <h3 class="text-2xl font-bold">
+      {title}
+    </h3>
+    <p class="text-gray-600 leading-relaxed">
+      {description}
+    </p>
+  </div>
+</div>

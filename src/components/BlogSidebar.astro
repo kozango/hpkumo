@@ -1,0 +1,106 @@
+---
+import type { Category } from '../lib/microcms';
+
+interface Props {
+  categories?: Category[];
+  currentCategory?: string;
+}
+
+// デフォルトのカテゴリーデータ
+const defaultCategories = [
+  { id: 'lduns2-jx', name: 'テクノロジー' },
+  { id: 'fnh2lkfo464', name: '更新情報' },
+  { id: 'sz5fuwhux3', name: 'チュートリアル' },
+  { id: 'new-category', name: '新規カテゴリー' }
+];
+
+const { categories = defaultCategories, currentCategory } = Astro.props;
+---
+
+<aside class="w-full lg:w-64">
+  <div class="sticky top-24">
+    <div class="mb-8">
+      <h2 class="text-lg font-bold mb-4">カテゴリー</h2>
+      <ul class="space-y-2">
+        <li>
+          <a
+            href="/blog"
+            class:list={[
+              'block px-4 py-2 rounded-lg transition-colors',
+              !currentCategory
+                ? 'bg-primary text-white'
+                : 'hover:bg-gray-100',
+            ]}
+          >
+            すべて
+          </a>
+        </li>
+        {
+          categories.map((category) => (
+            <li>
+              <a
+                href={`/blog/category/${category.id}`}
+                class:list={[
+                  'block px-4 py-2 rounded-lg transition-colors',
+                  currentCategory === category.id
+                    ? 'bg-primary text-white'
+                    : 'hover:bg-gray-100',
+                ]}
+              >
+                {category.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-lg font-bold mb-4">記事を検索</h2>
+      <form action="/blog/search" method="get" class="group">
+        <div class="relative">
+          <input
+            type="search"
+            name="q"
+            placeholder="キーワードを入力"
+            class="w-full px-4 py-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-shadow"
+            required
+          />
+          <button
+            type="submit"
+            class="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-gray-100 transition-colors"
+            aria-label="検索"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-gray-400 group-hover:text-primary transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="mt-8 p-6 bg-primary/5 rounded-xl">
+      <h3 class="text-lg font-bold mb-3">お問い合わせ</h3>
+      <p class="text-sm text-gray-600 mb-4">
+        サービスについてのご質問や無料相談はこちらから
+      </p>
+      <a 
+        href="/contact" 
+        class="inline-block w-full py-2 px-4 bg-primary text-white text-center font-medium rounded-lg hover:bg-primary/90 transition-colors"
+      >
+        お問い合わせページへ
+      </a>
+    </div>
+  </div>
+</aside>

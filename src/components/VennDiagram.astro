@@ -1,0 +1,34 @@
+---
+// Venn diagram component for Kumono's strengths visualization
+---
+
+<div class="venn-diagram relative w-full h-80 flex items-center justify-center">
+  <!-- Circle 1: プロダクト開発・PdM -->
+  <div class="absolute w-48 h-48 rounded-full bg-blue-200/70 flex items-center justify-center transform translate-x-[-30px] translate-y-[-30px] transition-all duration-300 hover:bg-blue-300/80">
+    <span class="text-center font-medium text-gray-800 px-4">プロダクト開発<br/>PdM</span>
+  </div>
+  
+  <!-- Circle 2: データ分析・活用 -->
+  <div class="absolute w-48 h-48 rounded-full bg-green-200/70 flex items-center justify-center transform translate-x-[30px] translate-y-[-30px] transition-all duration-300 hover:bg-green-300/80">
+    <span class="text-center font-medium text-gray-800 px-4">データ分析<br/>活用</span>
+  </div>
+  
+  <!-- Circle 3: UXリサーチ・ユーザー理解 -->
+  <div class="absolute w-48 h-48 rounded-full bg-purple-200/70 flex items-center justify-center transform translate-x-[0px] translate-y-[40px] transition-all duration-300 hover:bg-purple-300/80">
+    <span class="text-center font-medium text-gray-800 px-4">UXリサーチ<br/>ユーザー理解</span>
+  </div>
+  
+  <!-- Center intersection -->
+  <div class="absolute w-20 h-20 rounded-full bg-gray-800 flex items-center justify-center z-10 shadow-lg transform transition-all duration-300 hover:scale-110">
+    <span class="text-center text-white text-xs font-bold">Kumono</span>
+  </div>
+</div>
+
+<style>
+  .venn-diagram div {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  .venn-diagram div:hover {
+    transform: scale(1.05) translate(var(--tw-translate-x), var(--tw-translate-y));
+  }
+</style>

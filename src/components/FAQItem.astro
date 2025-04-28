@@ -1,0 +1,12 @@
+---
+import FAQItemReact from './react/FAQItem';
+
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<FAQItemReact client:visible question={question} answer={answer} />

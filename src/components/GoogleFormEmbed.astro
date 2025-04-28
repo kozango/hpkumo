@@ -1,0 +1,18 @@
+---
+interface Props {
+  src: string;
+  title?: string;
+}
+
+const { src, title = 'Google Form' } = Astro.props;
+---
+
+<div class="w-full max-w-4xl mx-auto">
+  <iframe
+    src={src}
+    title={title}
+    class="w-full min-h-[1200px] border-none"
+  >
+    Loading...
+  </iframe>
+</div>

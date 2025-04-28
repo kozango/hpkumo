@@ -1,0 +1,13 @@
+---
+// 拡張された検索コンポーネント
+import EnhancedBlogSearch from './EnhancedBlogSearch';
+
+// 初期クエリを取得（URLパラメータから）
+const initialQuery = Astro.url.searchParams.get('q') || '';
+---
+
+<EnhancedBlogSearch initialQuery={initialQuery} client:load />
+
+<style>
+  /* スタイルはReactコンポーネント内で定義 */
+</style>

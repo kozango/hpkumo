@@ -1,0 +1,49 @@
+---
+// ロゴカルーセルコンポーネント
+// 企業ロゴを自動スライドで表示するカルーセル
+
+export interface Props {
+  logos: {
+    name: string;
+    path: string;
+    url?: string;
+  }[];
+  title?: string;
+}
+
+const { logos, title = "パートナー企業" } = Astro.props;
+---
+
+<div class="logo-carousel-container py-12 overflow-hidden">
+  <div class="container mx-auto px-4">
+    {title && <h3 class="text-center text-2xl font-bold mb-4">{title}</h3>}
+    <p class="text-center text-sm text-gray-500 mb-8">※許諾をいただいた会社のみロゴ掲載</p>
+    
+    <div class="relative">
+      <!-- ロゴカルーセル -->
+      <div class="flex flex-wrap items-center justify-center gap-12 md:gap-20">
+        {logos.map((logo) => (
+          <div class="logo-item flex-shrink-0 w-48 h-32 md:w-64 md:h-40 flex items-center justify-center p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+            {logo.url ? (
+              <a href={logo.url} target="_blank" rel="noopener noreferrer" class="w-full h-full flex items-center justify-center">
+                <img 
+                  src={logo.path} 
+                  alt={`${logo.name} ロゴ`} 
+                  class={`max-w-full max-h-full object-contain ${logo.path.includes("soelu") ? "p-0 scale-[1.8]" : "p-2"}`}
+                />
+              </a>
+            ) : (
+              <img 
+                src={logo.path} 
+                alt={`${logo.name} ロゴ`} 
+                class={`max-w-full max-h-full object-contain ${logo.path.includes("soelu") ? "p-0 scale-[1.8]" : "p-2"}`}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+

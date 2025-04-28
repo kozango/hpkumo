@@ -1,0 +1,13 @@
+---
+// 拡張された検索結果表示コンポーネント
+import EnhancedSearchResults from './EnhancedSearchResults';
+
+// 検索クエリを取得
+const query = Astro.url.searchParams.get('q') || '';
+---
+
+<EnhancedSearchResults query={query} client:load />
+
+<style>
+  /* スタイルはReactコンポーネント内で定義 */
+</style>
